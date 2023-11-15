@@ -7,16 +7,17 @@
 		const max = Math.floor(Math.max(n, m));
 		const min = Math.ceil(Math.min(n, m));
 	
-		for (let i = 0; i < count; i++) {
-			arr.push(Math.floor(Math.random() * (max - min + 1) + min));
+		while (arr.length < count) {
+			const random = Math.floor(Math.random() * (max - min + 1) + min);
+
+			if ((str === 'even' && random % 2 === 0) || (str === 'odd' && random % 2 !== 0)) {
+				arr.push(random);
+			}
 		}
 
-		if (str === 'even') {
-			return arr.filter(item => !(item % 2));
-		} else if (str === 'odd') {
-			return arr.filter(item => item % 2);
-		}
+		return arr;
 	}
 	
 	console.log(getRandomNumbers(7, 5, 2, 'even'));
+	console.log(getRandomNumbers(5, 5, 2, 'odd'));
 }
